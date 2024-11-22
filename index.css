@@ -1,0 +1,33 @@
+body {
+    padding: 50px;
+}
+
+.letter {
+    position: relative;
+    border: 1px solid #000;
+    width: 400px;
+}
+
+div.letter h1 {
+    position: relative;
+    font-size: 1.2em;
+    background-color: #990000;
+    color: #fff;
+    width: 420px;
+    left: -10px;
+    text-align: center;
+}
+
+div.letter h1::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: -10px;
+    border-color: transparent #7c0000 #7c0000 transparent;
+    border-width: 5px;
+    border-style: solid;
+}
+
+p#mensagem {
+  padding: 10px;
+}
