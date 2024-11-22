@@ -31,9 +31,14 @@ var mensagens = [
     { autor: 'Mark Twain', conteudo: 'Sempre que você se encontra do lado da maioria, é hora de parar e refletir.' },
 ]
 
-function populaMensagem(mensagem) {
-    document.querySelector('div.letter h1').innerHTML = mensagem.autor;
-    document.querySelector('p#mensagem').innerHTML = mensagem.conteudo;
+function populaMensagemBuilder(marcadorParagrafo) {
+    var h1Element = document.querySelector('div.letter h1');
+    var pElement = document.querySelector('p#mensagem');
+
+    return function(mensagem) {
+        h1Element.innerHTML = mensagem.autor;
+        pElement.innerHTML = marcadorParagrafo + ' ' + mensagem.conteudo;
+    }
 }
 
 function proximaMensagem() {
@@ -42,13 +47,11 @@ function proximaMensagem() {
     return msg;
 }
 
-function atualizaMensagem() {
-    var msg = proximaMensagem();
-    populaMensagem(msg);
-}
-
 function registraIntervaloMsg() {
-    return setInterval(atualizaMensagem, 5000);
+    var popularMsg = populaMensagemBuilder('-');
+    return setInterval(function() {
+        popularMsg(proximaMensagem());
+    }, 5000);
 }
 
 window.onload = function() {
